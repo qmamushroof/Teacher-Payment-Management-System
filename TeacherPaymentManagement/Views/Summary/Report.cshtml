@@ -1,0 +1,114 @@
+﻿@using TeacherPaymentManagement.Controllers
+@model ReportViewModel
+
+@{
+    ViewData["Title"] = "Report";
+}
+
+<h1>Report</h1>
+
+<h2>Teachers</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Teacher Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Teachers)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.ContactNumber</td>
+                <td>@item.TeacherType</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Teacher Entries</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>TeacherId</th>
+            <th>Teacher Name</th>
+            <th>Script Quantity</th>
+            <th>Evaluation Date</th>
+            <th>Payment Setting</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TeacherEntries)
+        {
+            <tr>
+                <td>@item.TeacherId</td>
+                <td>@item.Teacher.Name</td>
+                <td>@item.ScriptQuantity</td>
+                <td>@item.EvaluationDate.ToShortDateString()</td>
+                <td>@(item.PaymentSetting?.SettingName ?? "N/A")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Payment Settings</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Payment Id</th>
+            <th>Setting Name</th>
+            <th>Effective Date</th>
+            <th>Closing Date</th>
+            <th>Honorium Amount</th>
+            <th>Additional Amount</th>
+            <th>Is Used</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PaymentSettings)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.SettingName</td>
+                <td>@item.EffectiveDate.ToShortDateString()</td>
+                <td>@item.ClosingDate.ToShortDateString()</td>
+                <td>@item.HonoriumAmount</td>
+                <td>@item.AdditionalAmount</td>
+                <td>@item.IsUsed</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Teacher Summaries</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Teacher Id</th>
+            <th>Teacher Name</th>
+            <th>Total Scripts</th>
+            <th>Total Honorium Amount</th>
+            <th>Total Additional Amount</th>
+            <th>Total Amount</th>
+            <th>With Additional Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TeacherSummaries)
+        {
+            <tr>
+                <td>@item.TeacherId</td>
+                <td>@item.TeacherName</td>
+                <td>@item.TotalScripts</td>
+                <td>@item.HonoriumAmount</td>
+                <td>@item.AdditionalAmount</td>
+                <td>@item.TotalAmount</td>
+                <td>@item.WithAdditionalAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>

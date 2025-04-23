@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PaymentSetting>
+
+@{
+    ViewData["Title"] = "Payment Settings";
+}
+
+<h1>Payment Settings</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.SettingName)</th>
+            <th>@Html.DisplayNameFor(model => model.EffectiveDate)</th>
+            <th>@Html.DisplayNameFor(model => model.ClosingDate)</th>
+            <th>@Html.DisplayNameFor(model => model.HonoriumAmount)</th>
+            <th>@Html.DisplayNameFor(model => model.AdditionalAmount)</th>
+            <th>@Html.DisplayNameFor(model => model.IsUsed)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.SettingName)</td>
+                <td>@Html.DisplayFor(modelItem => item.EffectiveDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.ClosingDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.HonoriumAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.AdditionalAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsUsed)</td>
+                <td>
+                    @if (!item.IsUsed)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @:|
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Edit | Delete</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

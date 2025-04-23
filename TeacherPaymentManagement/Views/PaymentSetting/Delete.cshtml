@@ -1,0 +1,58 @@
+﻿@model PaymentSetting
+
+@{
+    ViewData["Title"] = ViewContext.RouteData.Values["action"].ToString() + " Payment Setting";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewContext.RouteData.Values["action"].ToString() == "Edit")
+            {
+                <input type="hidden" asp-for="Id" />
+            }
+            <div class="form-group">
+                <label asp-for="SettingName" class="control-label"></label>
+                <input asp-for="SettingName" class="form-control" />
+                <span asp-validation-for="SettingName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EffectiveDate" class="control-label"></label>
+                <input asp-for="EffectiveDate" type="date" class="form-control" />
+                <span asp-validation-for="EffectiveDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClosingDate" class="control-label"></label>
+                <input asp-for="ClosingDate" type="date" class="form-control" />
+                <span asp-validation-for="ClosingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HonoriumAmount" class="control-label"></label>
+                <input asp-for="HonoriumAmount" class="form-control" />
+                <span asp-validation-for="HonoriumAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalAmount" class="control-label"></label>
+                <input asp-for="AdditionalAmount" class="form-control" />
+                <span asp-validation-for="AdditionalAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@ViewContext.RouteData.Values["action"].ToString()" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

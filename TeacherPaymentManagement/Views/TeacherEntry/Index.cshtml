@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TeacherEntry>
+
+@{
+    ViewData["Title"] = "Teacher Entries";
+}
+
+<h1>Teacher Entries</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Teacher Id</th>
+            <th>Teacher Name</th>
+            <th>@Html.DisplayNameFor(model => model.ScriptQuantity)</th>
+            <th>@Html.DisplayNameFor(model => model.EvaluationDate)</th>
+            <th>Payment Setting</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Teacher.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Teacher.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.ScriptQuantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.EvaluationDate)</td>
+                <td>@(item.PaymentSetting?.SettingName ?? "N/A")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

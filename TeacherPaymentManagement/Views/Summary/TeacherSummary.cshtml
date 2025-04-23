@@ -1,0 +1,36 @@
+﻿@using TeacherPaymentManagement.Controllers
+@model IEnumerable<TeacherSummaryViewModel>
+
+@{
+    ViewData["Title"] = "Teacher Summary";
+}
+
+<h1>Teacher Summary</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Teacher Id</th>
+            <th>Teacher Name</th>
+            <th>Total Scripts</th>
+            <th>Total Honorium Amount</th>
+            <th>Total Additional Amount</th>
+            <th>Total Amount</th>
+            <th>With Additional Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TeacherId)</td>
+                <td>@Html.DisplayFor(modelItem => item.TeacherName)</td>
+                <td>@Html.DisplayFor(modelItem => item.TotalScripts)</td>
+                <td>@Html.DisplayFor(modelItem => item.HonoriumAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.AdditionalAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.WithAdditionalAmount)</td>
+            </tr>
+        }
+    </tbody>
+</table>
